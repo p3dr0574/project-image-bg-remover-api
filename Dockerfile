@@ -11,7 +11,9 @@ COPY app /app
 COPY output /app/output
 
 # Make the specified port available to the world outside this container
-EXPOSE 3000
+# Set a default value for SERVER_PORT if not provided
+ENV SERVER_PORT=3000
+EXPOSE $SERVER_PORT
 
 # Declare the 'output' directory as a volume
 VOLUME /app/output

@@ -59,5 +59,7 @@ def serve_output(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
 if __name__ == "__main__":
-    port = int(3000)  # Default to 3000 if PORT is not set
+    import os
+    # Get the port from the environment variable, default to 3000 if not set
+    port = int(os.environ.get('SERVER_PORT', 3000))
     app.run(host='0.0.0.0', port=port, debug=True)
