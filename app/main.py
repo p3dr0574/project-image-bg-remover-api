@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from rembg import remove
 from PIL import Image
 import requests
@@ -52,6 +52,11 @@ def remove_bg():
         return jsonify({'status': 'success', 'link': f"/{UPLOAD_FOLDER}/{output_filename}"})
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
+
+# Rota para servir arquivos estáticos na pasta 'output'
+@app.route('/output/<path:filename>')
+def serve_output(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
 
 if __name__ == "__main__":
     port = int(3000)  # Default to 3000 if PORT is not set
