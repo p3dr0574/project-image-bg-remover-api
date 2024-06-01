@@ -49,7 +49,7 @@ def remove_bg():
         output_path = os.path.join(UPLOAD_FOLDER, output_filename)
         result_img.save(output_path)
 
-        return jsonify({'status': 'success', 'link': f"/{UPLOAD_FOLDER}/{output_filename}"})
+        return jsonify({'status': 'success', 'link': f"{UPLOAD_FOLDER}/{output_filename}"})
     except Exception as e:
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
